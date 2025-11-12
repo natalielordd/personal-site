@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 type Photo = {
   src: string;        
@@ -47,7 +48,7 @@ export default function PhotosPage() {
           <h1 className="text-2xl sm:text-3xl font-semibold text-indigo-900">
             Snapshots of My Life Offline
           </h1>
-          <p> Mostly dog photos</p>
+          <p> Mostly dog photos.</p>
         </header>
 
         {/* Grid */}
@@ -72,6 +73,16 @@ export default function PhotosPage() {
             </button>
           ))}
         </section>
+      </div>
+
+      {/* Footer / Link */}
+      <div className="text-center mt-12 text-sm text-neutral-500">
+        <Link
+          href="/"
+          className="text-indigo-600 hover:text-indigo-400 transition"
+        >
+          ← Back to Home
+        </Link>
       </div>
 
       {/* Modal / Lightbox */}
