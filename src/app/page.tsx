@@ -26,7 +26,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col justify-center items-center text-center px-6">
+    <main className="min-h-screen flex flex-col justify-center items-center text-center px-6 -mt-12">
       {/* Greeting */}
       <div className="flex flex-col items-center md:items-start mb-6">
         <button
@@ -34,8 +34,8 @@ export default function HomePage() {
             <Image
           src={currentDog}
           alt="Robot Dog"
-          width={150}
-          height={150}
+          width={250}
+          height={250}
           className="rounded-lg transition-transform duration-300 hover:scale-105"
           priority
         />
