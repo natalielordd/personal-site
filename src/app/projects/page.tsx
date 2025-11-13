@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { FiGithub, FiExternalLink, FiFileText } from "react-icons/fi";
 import Link from "next/link";
 
 type Project = {
@@ -12,26 +12,51 @@ type Project = {
   cover: string;          // /public path for preview image (1:1 recommended)
   tags: string[];
   details?: string;       // shown in modal
-  links?: { label: string; href: string; icon?: "github" | "external" }[];
+  links?: { label: string; href: string; icon?: "github" | "document" | "external" }[];
   gallery?: { src: string; alt?: string; type: string; caption?: string }[]; // optional extra images in modal
 };
 
 const PROJECTS: Project[] = [
   {
-    title: "JTAF: Junos Terraform Automation Framework",
+    title: "Junos Terraform Automation Framework (JTAF)",
     slug: "jtaf",
     summary:
-      "Open-source framework that generates Terraform providers for Juniper devices.",
-    cover: "/projects/terraform.png",
+      "Open-source framework that generates Terraform providers for Juniper devices",
+    cover: "/projects/jtaf.png",
     tags: ["Go", "Python", "Terraform", "Automation"],
     details:
-      "JTAF is an open-source framework that builds Junos Terraform providers from YANG models. I contribute as part of an optional side project at work, helping design and test new provider logic. Check out the demo of our most recent release, which adds support for Junos groups!",
+      "JTAF is an open-source framework that builds Junos Terraform providers from YANG models. I contribute as part of an optional side project at work, helping design and test new provider logic. \n \n Check out the demo of our most recent release, which adds support for Junos groups.",
     links: [
       { label: "GitHub", href: "https://github.com/Juniper/junos-terraform", icon: "github" },
     ],
     gallery: [
       {src: "/projects/jtaf-1.1-release.mp4", type: "video", caption: "JTAF 1.1 Demo" }
     ],
+  },
+  {
+  title: "Bruinfeed Quizzes - UCLA CS 130 Project" ,
+  slug: "bruinfeed",
+  summary:
+    "A BuzzFeed-inspired quiz platform built on a C++ webserver framework",
+  cover: "/projects/bruinfeed-quiz.png",
+  tags: ["C++", "HTML", "CSS", "JavaScript"],
+  details:
+    "Bruinfeed Quizzes is a BuzzFeed-style personality quiz application built as the final project for UCLA CS 130. My team and I implemented our own modular C++ webserver, routing system, and request handlers, along with a fully custom frontend for taking and creating quizzes. \n \n I won't share the code just in case a future student comes across this page, but enjoy the demos and design doc.",
+  links: [
+    { label: "Design Doc", href: "https://docs.google.com/document/d/1K8nXA9BUjM8ZChGrhUPCvJESK-1yptQethhErNCa068/edit?usp=sharing", icon: "document" }
+  ],
+  gallery: [
+    {
+      src: "/projects/bruinfeed-demo1.mp4",
+      type: "video",
+      caption: "Taking a Quiz"
+    },
+    {
+      src: "/projects/bruinfeed-demo2.mp4",
+      type: "video",
+      caption: "Creating a Quiz"
+    }
+  ]
   },
 ];
 
@@ -61,7 +86,8 @@ export default function ProjectsPage() {
             <button
               key={p.slug}
               onClick={() => setOpen(i)}
-              className="group rounded-2xl border border-neutral-200 bg-white overflow-hidden text-left shadow-sm hover:shadow-md transition"
+              className="group rounded-2xl border border-neutral-200 bg-white overflow-hidden text-left shadow-sm hover:shadow-md transition
+                        flex flex-col h-full"
               aria-label={`Open project ${p.title}`}
             >
               {/* Cover (square) */}
@@ -78,8 +104,20 @@ export default function ProjectsPage() {
 
               {/* Meta */}
               <div className="p-4">
-                <h2 className="text-lg font-semibold text-neutral-900">{p.title}</h2>
-                <p className="mt-1 text-sm text-neutral-600 line-clamp-2">{p.summary}</p>
+                <h2
+                  className="
+                    text-lg font-semibold text-neutral-900
+                    leading-snug
+                    line-clamp-2
+                    min-h-[2.6rem]   /* reserve space for 2 lines */
+                  "
+                >
+                  {p.title}
+                </h2>
+
+                <p className="mt-1 text-sm text-neutral-600 line-clamp-2">
+                  {p.summary}
+                </p>
 
                 <div className="mt-3 flex flex-wrap gap-2">
                   {p.tags.map((t) => (
@@ -134,7 +172,14 @@ export default function ProjectsPage() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 text-indigo-600 hover:text-indigo-400"
                     >
-                      {l.icon === "github" ? <FiGithub /> : <FiExternalLink />}
+                     {l.icon === "github" ? (
+                        <FiGithub />
+                      ) : l.icon === "document" ? (
+                        <FiFileText />
+                      ) : (
+                        <FiExternalLink />
+                      )}
+
                       {l.label}
                     </a>
                   ))}
