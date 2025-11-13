@@ -91,7 +91,7 @@ export default function ProjectsPage() {
               aria-label={`Open project ${p.title}`}
             >
               {/* Cover (square) */}
-              <div className="relative aspect-square bg-neutral-100">
+              <div className="relative aspect-[4/3] sm:aspect-square bg-neutral-100">
                 <Image
                   src={p.cover}
                   alt={p.title}
@@ -148,13 +148,17 @@ export default function ProjectsPage() {
       {/* Modal */}
       {open !== null && (
         <div
-          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center px-4"
+          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm
+      flex items-start sm:items-center justify-center
+      px-2 sm:px-4 py-4"
           onClick={() => setOpen(null)}
           role="dialog"
           aria-modal="true"
         >
           <div
-            className="relative w-full max-w-4xl"
+            className="relative w-full max-w-4xl
+    max-h-[90vh] sm:max-h-none
+    overflow-y-auto sm:overflow-visible"
             onClick={(e) => e.stopPropagation()}
           >
             <article className="rounded-2xl overflow-hidden bg-white">
