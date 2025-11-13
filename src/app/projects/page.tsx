@@ -91,7 +91,7 @@ export default function ProjectsPage() {
               aria-label={`Open project ${p.title}`}
             >
               {/* Cover (square) */}
-              <div className="relative aspect-[4/3] sm:aspect-square bg-neutral-100">
+              <div className="relative w-full h-48 sm:h-auto sm:aspect-square bg-neutral-100">
                 <Image
                   src={p.cover}
                   alt={p.title}
