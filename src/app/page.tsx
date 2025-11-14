@@ -11,7 +11,13 @@ export default function HomePage() {
     "/robo-dogs/robo-dog-cowboy.png", 
     "/robo-dogs/robo-dog-sunglasses.png",
     "/robo-dogs/robo-dog-tongue.png",
-    "/robo-dogs/robo-dog-winking.png"
+    "/robo-dogs/robo-dog-winking.png",
+    "/robo-dogs/robo-dog-beanie.png",
+    "/robo-dogs/robo-dog-headphones.png",
+    "/robo-dogs/robo-dog-bandana.png",
+    "/robo-dogs/robo-dog-hero.png",
+    "/robo-dogs/robo-dog-coffee.png",
+    "/robo-dogs/robo-dog-laptop.png",
   ];
 
   const [currentDog, setCurrentDog] = useState(dogImages[0]);
